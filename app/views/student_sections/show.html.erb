@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Student Name:</strong>
+  <%= @student_section.student.name%>
+</p>
+
+<p>
+  <strong>Section:</strong>
+  <%= @student_section.section.year %>
+</p>
+
+<p>
+  <strong>Semester:</strong>
+  <%= @student_section.section.semester.semester %>
+
+</p>
+
+<p>
+  <strong>Course No:</strong>
+  <%= @student_section.section.course.number %>
+</p>
+
+<p>
+  <strong>Professor:</strong>
+  <%= @student_section.section.professor.name %>
+</p>
+
+<p>
+  <strong>Department:</strong>
+  <%= @student_section.section.course.department.name %>
+</p>
+
+
+<%= link_to 'Edit', edit_student_section_path(@student_section) %> |
+<%= link_to 'Back', student_sections_path %>
