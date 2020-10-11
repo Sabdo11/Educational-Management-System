@@ -1,0 +1,136 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Search Results</h1>
+
+<% if @search_by == "departments" %>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Department Name </th>
+      <th> Actions </th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @search_results.each do |search_result| %>
+      <tr>
+        <td><%= search_result.name %></td>
+        <td><%= link_to 'Show', search_result %>
+      <%= link_to 'Edit', edit_student_path(search_result) %>
+      <%= link_to 'Destroy', search_result, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+<% elsif @search_by == "students" %>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Student Name</th>
+      <th>Identifier</th>
+      <th> Actions </th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @search_results.each do |search_result| %>
+      <tr>
+        <td><%= search_result.name %></td>
+        <td><%= search_result.identifier %></td>
+        <td><%= link_to 'Show', search_result %>
+        <%= link_to 'Edit', edit_student_path(search_result) %>
+        <%= link_to 'Destroy', search_result, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% elsif @search_by == "courses" %>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Course Number</th>
+      <th>Credit hours</th>
+      <th> Actions </th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @search_results.each do |search_result| %>
+      <tr>
+        <td><%= search_result.number %></td>
+        <td><%= search_result.hours %></td>
+        <td><%= link_to 'Show', search_result %>
+        <%= link_to 'Edit', edit_student_path(search_result) %>
+        <%= link_to 'Destroy', search_result, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% elsif @search_by == "sections" %>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Section(Year)</th>
+      <th> Actions</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @search_results.each do |search_result| %>
+      <tr>
+        <td><%= search_result.year %></td>
+        <td><%= link_to 'Show', search_result %>
+        <%= link_to 'Edit', edit_student_path(search_result) %>
+        <%= link_to 'Destroy', search_result, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% elsif @search_by == "semesters" %>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Semester </th>
+      <th> Actions </th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @search_results.each do |search_result| %>
+      <tr>
+        <td><%= search_result.semester %></td>
+        <td><%= link_to 'Show', search_result %>
+        <%= link_to 'Edit', edit_student_path(search_result) %>
+        <%= link_to 'Destroy', search_result, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% elsif @search_by == "professors" %>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Professor </th>
+      <th>office Number</th>
+      <th> Actions</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @search_results.each do |search_result| %>
+      <tr>
+        <td><%= search_result.name %></td>
+        <td><%= search_result.office %></td>
+        <td><%= link_to 'Show', search_result %>
+        <%= link_to 'Edit', edit_student_path(search_result) %>
+        <%= link_to 'Destroy', search_result, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<br>
+
+<%= link_to '< Back', student_sections_path %>

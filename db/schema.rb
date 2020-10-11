@@ -27,19 +27,6 @@ ActiveRecord::Schema.define(version: 2020_09_27_181038) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "people", force: :cascade do |t|
-    t.string "person_id"
-    t.string "first_name"
-    t.string "last_name"
-    t.string "email"
-    t.string "address_line_one"
-    t.string "city"
-    t.string "state"
-    t.string "zip_code"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "professors", force: :cascade do |t|
     t.string "name"
     t.string "office"
