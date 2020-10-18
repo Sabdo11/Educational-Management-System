@@ -5,6 +5,7 @@ class StudentsController < ApplicationController
   # GET /students.json
   def index
     @students = Student.all
+
   end
 
   # GET /students/1
@@ -15,10 +16,12 @@ class StudentsController < ApplicationController
   # GET /students/new
   def new
     @student = Student.new
+    @sections= Section.all
   end
 
   # GET /students/1/edit
   def edit
+    @sections = Section.all
   end
 
   # POST /students
@@ -69,6 +72,6 @@ class StudentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def student_params
-      params.require(:student).permit(:name, :identifier)
+      params.require(:student).permit(:name, :identifier,:section_ids => [] )
     end
 end

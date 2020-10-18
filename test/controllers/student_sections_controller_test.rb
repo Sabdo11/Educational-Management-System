@@ -2,47 +2,47 @@ require 'test_helper'
 
 class StudentSectionsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @student_section = student_sections(:one)
+    @registration = student_sections(:one)
   end
 
   test "should get index" do
-    get student_sections_url
+    get registrations_url
     assert_response :success
   end
 
   test "should get new" do
-    get new_student_section_url
+    get new_registration_url
     assert_response :success
   end
 
-  test "should create student_section" do
-    assert_difference('StudentSection.count') do
-      post student_sections_url, params: { student_section: { section_id: @student_section.section_id, student_id: @student_section.student_id } }
+  test "should create registration" do
+    assert_difference('Registration.count') do
+      post registrations_url, params: {registration: {section_id: @registration.section_id, student_id: @registration.student_id } }
     end
 
-    assert_redirected_to student_section_url(StudentSection.last)
+    assert_redirected_to registration_url(Registration.last)
   end
 
-  test "should show student_section" do
-    get student_section_url(@student_section)
+  test "should show registration" do
+    get registration_url(@registration)
     assert_response :success
   end
 
   test "should get edit" do
-    get edit_student_section_url(@student_section)
+    get edit_registration_url(@registration)
     assert_response :success
   end
 
-  test "should update student_section" do
-    patch student_section_url(@student_section), params: { student_section: { section_id: @student_section.section_id, student_id: @student_section.student_id } }
-    assert_redirected_to student_section_url(@student_section)
+  test "should update registration" do
+    patch registration_url(@registration), params: {registration: {section_id: @registration.section_id, student_id: @registration.student_id } }
+    assert_redirected_to registration_url(@registration)
   end
 
-  test "should destroy student_section" do
-    assert_difference('StudentSection.count', -1) do
-      delete student_section_url(@student_section)
+  test "should destroy registration" do
+    assert_difference('Registration.count', -1) do
+      delete registration_url(@registration)
     end
 
-    assert_redirected_to student_sections_url
+    assert_redirected_to registrations_url
   end
 end
