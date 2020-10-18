@@ -75,3 +75,4 @@ class StudentsController < ApplicationController
       params.require(:student).permit(:name, :identifier,:section_ids => [] )
     end
 end
+

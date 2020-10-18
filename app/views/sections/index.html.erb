@@ -9,7 +9,7 @@
       <th>Semester</th>
       <th>Course Number</th>
       <th>Professor</th>
-      <th colspan="3"></th>
+      <th>Actions</th>
     </tr>
   </thead>
 
@@ -20,9 +20,9 @@
         <td><%= section.semester.semester %></td>
         <td><%= section.course.number %></td>
         <td><%= section.professor.name%></td>
-        <td><%= link_to 'Show', section %></td>
-        <td><%= link_to 'Edit', edit_section_path(section) %></td>
-        <td><%= link_to 'Destroy', section, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', section %>
+        <%= link_to 'Edit', edit_section_path(section) %>
+        <%= link_to 'Destroy', section, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
