@@ -16,7 +16,7 @@
   </thead>
 
   <tbody>
-  <% @student_sections.each do |student_section| %>
+  <% @registrations.each do |student_section| %>
     <tr>
       <td><%= student_section.student.name %></td>
       <td><%= student_section.section.year %></td>
@@ -25,9 +25,9 @@
       <td><%= student_section.section.professor.name %></td>
       <td><%= student_section.section.course.department.name%></td>
 
-      <td><%= link_to 'Show', student_section %>
-      <%= link_to 'Edit', edit_student_section_path(student_section) %>
-      <%= link_to 'Destroy', student_section, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Show', controller: "registrations" , action: "show", id: student_section%></td>
+<!--      <td><%#= link_to 'Edit', edit_registration_path(student_section) %></td>-->
+<!--      <td><%#= link_to 'Destroy', student_section, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
     </tr>
   <% end %>
   </tbody>
@@ -35,4 +35,4 @@
 
 <br>
 
-<%= link_to 'New Registration', new_student_section_path %>
+<%#= link_to 'New Registration', new_registration_path %>

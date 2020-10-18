@@ -6,8 +6,17 @@
 </p>
 
 <p>
-  <strong>Identifier:</strong>
+  <strong>Student ID:</strong>
   <%= @student.identifier %>
+</p>
+
+<p>
+  <strong>Section ID:</strong>
+<ol>
+  <% @student.sections.each do |section| %>
+    <li> <%= section.year %> </li>
+  <% end %>
+</ol>
 </p>
 
 <%= link_to 'Edit', edit_student_path(@student) %> |

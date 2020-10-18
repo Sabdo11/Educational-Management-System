@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  resources :student_sections
-  root 'student_sections#index'
+  root 'registrations#index'
+  get '/registrations/:id' => 'registrations#show'
+
   resources :courses
   resources :sections
   resources :students

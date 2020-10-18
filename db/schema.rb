@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_27_181038) do
+ActiveRecord::Schema.define(version: 2020_10_18_213217) do
 
   create_table "courses", force: :cascade do |t|
     t.integer "number"
@@ -46,20 +46,21 @@ ActiveRecord::Schema.define(version: 2020_09_27_181038) do
     t.index ["semester_id"], name: "index_sections_on_semester_id"
   end
 
+  create_table "sections_students", force: :cascade do |t|
+    t.integer "section_id", null: false
+    t.integer "student_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["section_id"], name: "index_sections_students_on_section_id"
+    t.index ["student_id"], name: "index_sections_students_on_student_id"
+  end
+
   create_table "semesters", force: :cascade do |t|
     t.string "semester"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "student_sections", force: :cascade do |t|
-    t.integer "section_id", null: false
-    t.integer "student_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["section_id"], name: "index_student_sections_on_section_id"
-    t.index ["student_id"], name: "index_student_sections_on_student_id"
-  end
 
   create_table "students", force: :cascade do |t|
     t.string "name"
@@ -72,6 +73,6 @@ ActiveRecord::Schema.define(version: 2020_09_27_181038) do
   add_foreign_key "sections", "courses"
   add_foreign_key "sections", "professors"
   add_foreign_key "sections", "semesters"
-  add_foreign_key "student_sections", "sections"
-  add_foreign_key "student_sections", "students"
+  add_foreign_key "sections_students", "sections"
+  add_foreign_key "sections_students", "students"
 end
