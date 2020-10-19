@@ -5,7 +5,6 @@ class StudentsController < ApplicationController
   # GET /students.json
   def index
     @students = Student.all
-
   end
 
   # GET /students/1
@@ -28,7 +27,7 @@ class StudentsController < ApplicationController
   # POST /students.json
   def create
     @student = Student.new(student_params)
-
+    @sections= Section.all
     respond_to do |format|
       if @student.save
         format.html { redirect_to @student, notice: 'Student was successfully created.' }
