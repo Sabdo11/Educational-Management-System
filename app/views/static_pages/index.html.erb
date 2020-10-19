@@ -24,10 +24,7 @@
       <td><%= student_section.section.course.number %></td>
       <td><%= student_section.section.professor.name %></td>
       <td><%= student_section.section.course.department.name%></td>
-
-          <td><%= link_to 'Show', controller: "registrations" , action: "show", id: student_section%></td>
-<!--      <td><%#= link_to 'Edit', edit_registration_path(student_section) %></td>-->
-<!--      <td><%#= link_to 'Destroy', student_section, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
+          <td><%= link_to 'Show', controller: "static_pages" , action: "show", id: student_section%></td>
     </tr>
   <% end %>
   </tbody>
@@ -35,4 +32,3 @@
 
 <br>
 
-<%#= link_to 'New Registration', new_registration_path %>

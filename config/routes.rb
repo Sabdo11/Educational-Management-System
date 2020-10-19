@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  root 'registrations#index'
-  get '/registrations/:id' => 'registrations#show'
+  root 'static_pages#index'
+  get '/static_pages/:id' => 'static_pages#show'
 
   resources :courses
   resources :sections
@@ -9,6 +9,6 @@ Rails.application.routes.draw do
   resources :professors
   resources :departments
 
-  get 'search' => "student_sections#search"
+  get 'search' => "static_pages#search"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
