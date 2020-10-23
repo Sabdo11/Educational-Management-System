@@ -65,8 +65,51 @@
       <%= msg %>
     <% end %>
   <% end %>
-
   <%= yield %>
 </div>
+
+<% if user_signed_in? %>
+  <div class="navbar-default">
+    <p><strong>Current User:  <%= current_user.email %></strong></p>
+    <div class="pull-right"><%= link_to 'Log out', destroy_user_session_path, method: :delete %>
+      </div>
+    </div>
+
+<% end %>
+
+<!-------Footer ---->
+<footer>
+  <footer class="footer-distributed">
+
+    <div class="footer-right">
+
+    </div>
+
+    <div class="footer-left">
+
+      <p class="footer-links">
+        <%= link_to 'Home', root_path %>
+        ·
+        <%= link_to 'Students', students_path %>
+        ·
+        <%= link_to 'Professors', professors_path %>
+        ·
+        <%= link_to 'Courses', courses_path %>
+        .
+        <%= link_to 'Semesters', courses_path %>
+        .
+        <%= link_to 'Sections', courses_path %>
+        .
+        <%= link_to 'Deparments', courses_path %>
+      </p>
+
+      <p>Selamawit Abdo &copy; 2020</p>
+    </div>
+
+  </footer>
+</footer>
+
+
+
 </body>
 </html>

@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
+  get 'home/index'
+  devise_for :users
+  #root to: "home#index"
   root 'static_pages#index'
   get '/static_pages/:id' => 'static_pages#show'
-
+  resources :static_pages
   resources :courses
   resources :sections
   resources :students
