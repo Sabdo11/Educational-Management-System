@@ -8,6 +8,7 @@
 
 <div id="Itemlist">
     <button v-on:click="students_selected=false">professors</button>
+    <button v-on:click="registration_selected=true; students_selected=false">registrations</button>
     <button v-on:click="students_selected=true">students</button>
     <button v-on:click="students_selected=false">courses</button>
     <button v-on:click="students_selected=false">departments</button>
@@ -15,33 +16,100 @@
     <button v-on:click="students_selected=false">semesters</button>
 
     <span v-if="students_selected">
-        <div v-for="student in students">
-            <li>{{student.name}}, { professors [student.professor_id].name}}</li>
-        </div>
-    </span>
-        <span v-else>
-        <div v-for="professor in professors">
-            <li>{{professor.name}}</li>
-            <div v-for="student in students">
-                <span v-if="student.professor_id === professor_id">
-                    {{ student.name }}
+        <h4> Students </h4>
+        <div v-for="registration in registrations">
+           <!-- <li>{{registration}}</li> -->
+            <template v-for="student in students">
+                <span v-if="registration.student_id === student.id">
+                    {{ student.name }} ,{{ sections[registration.section_id].year}} ,
                 </span>
-            </div>
+            </template>
+
+            <template v-for="section in sections">
+                <span v-if="registration.section_id === section.id">
+                    {{ professors[section.professor_id].name }}
+
+                    <template v-for="course in courses">
+                         <span v-if="section.course_id === course.id">
+                             <ul>
+                                <li>{{ course.number }} </li>
+                             </ul>
+                             <template v-for="department in departments">
+                                <span v-if="course.department_id === department.id">
+                                    <ul>
+                                        <li>{{ department.name }} </li>
+                                     </ul>
+                                </span>
+                             </template>
+
+                        </span>
+                    </template>
+
+                    <template v-for="semester in semesters">
+                         <span v-if="section.semester_id === semester.id">
+                             <ul>
+                                <li>{{ semester.semester }} </li>
+                            </ul>
+                        </span>
+                    </template>
+
+                </span>
+
+            </template>
+
         </div>
     </span>
+
+    <span v-else-if="registration_selected" >
+        <h4> Registrations </h4>
+        <div v-for="registration in registrations">
+           <!-- <li>{{registration}}</li> -->
+            <template v-for="student in students">
+                <span v-if="registration.student_id === student.id">
+                    {{ student.name }} ,{{ sections[registration.section_id].year}} ,
+                </span>
+            </template>
+
+            <template v-for="section in sections">
+                <span v-if="registration.section_id === section.id">
+                    {{ professors[section.professor_id].name }}
+
+                    <template v-for="course in courses">
+                         <span v-if="section.course_id === course.id">
+                             <ul>
+                                <li>{{ course.number }} </li>
+                             </ul>
+                             <template v-for="department in departments">
+                                <span v-if="course.department_id === department.id">
+                                    <ul>
+                                        <li>{{ department.name }} </li>
+                                     </ul>
+                                </span>
+                             </template>
+
+                        </span>
+                    </template>
+
+                    <template v-for="semester in semesters">
+                         <span v-if="section.semester_id === semester.id">
+                             <ul>
+                                <li>{{ semester.semester }} </li>
+                            </ul>
+                        </span>
+                    </template>
+
+                </span>
+
+            </template>
+        </div>
     </span>
+
     <span v-else>
-        <div v-for="sections in sections">
-            <li>{{section.id}}</li>
-            <div v-for="student in students">
-                <span v-if="student.sections === sections">
-                    {{ student.name }}
-                </span>
-            </div>
-            
-        </div>
+        <h4> else </h4>
+
     </span>
-    </ul>
+
+
 </div>
 
 <script type="text/javascript">
@@ -50,12 +118,13 @@
         el: '#Itemlist',
         data: {
             students: [],
+            registrations: [],
             sections: [],
             courses: [],
             departments: [],
             semesters: [],
-            students_selected: true,
-
+            students_selected: false,
+            registration_selected: false,
             professors: []
         },
         mounted: function () {
@@ -66,9 +135,19 @@
                 .catch(error => {
                     console.log(error);
                 });
+
+            axios.get('http://localhost:3000/static_pages.json')
+                .then(response => {
+                    this.registrations = response.data
+                    console.log(this.registrations);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
             axios.get('http://localhost:3000/professors.json')
                 .then(response => {
                     this.professors = response.data
+                    console.log(this.professors);
                 })
                 .catch(error => {
                     console.log(error);
@@ -97,6 +176,7 @@
             axios.get('http://localhost:3000/courses.json')
                 .then(response => {
                     this.courses = response.data
+                    console.log(this.courses);
                 })
                 .catch(error => {
                     console.log(error);
