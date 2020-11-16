@@ -1,0 +1,109 @@
+<html>
+<head>
+    <title>A very simple SPA </title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="Itemlist">
+    <button v-on:click="students_selected=false">professors</button>
+    <button v-on:click="students_selected=true">students</button>
+    <button v-on:click="students_selected=false">courses</button>
+    <button v-on:click="students_selected=false">departments</button>
+    <button v-on:click="students_selected=false">sections</button>
+    <button v-on:click="students_selected=false">semesters</button>
+
+    <span v-if="students_selected">
+        <div v-for="student in students">
+            <li>{{student.name}}, { professors [student.professor_id].name}}</li>
+        </div>
+    </span>
+        <span v-else>
+        <div v-for="professor in professors">
+            <li>{{professor.name}}</li>
+            <div v-for="student in students">
+                <span v-if="student.professor_id === professor_id">
+                    {{ student.name }}
+                </span>
+            </div>
+        </div>
+    </span>
+    </span>
+    <span v-else>
+        <div v-for="sections in sections">
+            <li>{{section.id}}</li>
+            <div v-for="student in students">
+                <span v-if="student.sections === sections">
+                    {{ student.name }}
+                </span>
+            </div>
+            
+        </div>
+    </span>
+    </ul>
+</div>
+
+<script type="text/javascript">
+    var ItemsVue;
+    ItemsVue = new Vue({
+        el: '#Itemlist',
+        data: {
+            students: [],
+            sections: [],
+            courses: [],
+            departments: [],
+            semesters: [],
+            students_selected: true,
+
+            professors: []
+        },
+        mounted: function () {
+            axios.get('http://localhost:3000/students.json')
+                .then(response => {
+                    this.students = response.data
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+            axios.get('http://localhost:3000/professors.json')
+                .then(response => {
+                    this.professors = response.data
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+            axios.get('http://localhost:3000/sections.json')
+                .then(response => {
+                    this.sections = response.data
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+            axios.get('http://localhost:3000/semesters.json')
+                .then(response => {
+                    this.semesters = response.data
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+            axios.get('http://localhost:3000/departments.json')
+                .then(response => {
+                    this.departments = response.data
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+            axios.get('http://localhost:3000/courses.json')
+                .then(response => {
+                    this.courses = response.data
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }
+    });
+</script>
+
+</body>
+</html>
