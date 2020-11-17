@@ -72,24 +72,26 @@
   <%= yield %>
 </div>
 
-<% if user_signed_in? %>
-  <div class="navbar-default">
-    <p><strong>Current User:  <%= current_user.email %></strong></p>
-    <div class="pull-right"><%= link_to 'Log out', destroy_user_session_path, method: :delete %>
-      </div>
-    </div>
 
-<% end %>
 
 <!-------Footer ---->
 <footer>
-  <footer class="footer-distributed">
+  <footer class="footer-distributed navbar-fixed-bottom">
 
     <div class="footer-right">
+      <% if user_signed_in? %>
+        <div class="navbar-default text-center">
+          <p><strong>Current User:  <%= current_user.email %></strong>
+            <span style="color: #cc0000">&nbsp;&nbsp;
+            <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
+            </span>
+          </p>
+        </div>
 
+      <% end %>
     </div>
 
-    <div class="footer-left">
+    <div class="text-center">
 
       <p class="footer-links">
         <%= link_to 'Home', root_path %>
